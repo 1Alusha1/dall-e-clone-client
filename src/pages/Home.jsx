@@ -22,7 +22,12 @@ const Home = () => {
   const getPosts = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://dall-e-clone-server-sekt.onrender.com/api/v1/post");
+      const res = await fetch(
+        "https://dall-e-clone-server-sekt.onrender.com/api/v1/post",
+        {
+          mode: "cors",
+        }
+      );
       const { data } = await res.json();
       setAllPosts(data);
     } catch (err) {
@@ -34,17 +39,20 @@ const Home = () => {
   };
 
   const search = async (e) => {
-    const query = e.target.value.toLowerCase(); 
-    setQuery(query); 
-  
+    const query = e.target.value.toLowerCase();
+    setQuery(query);
+
     const res = await fetch(
-      `https://dall-e-clone-server-sekt.onrender.com/api/v1/post/search?query=${query}`
+      `https://dall-e-clone-server-sekt.onrender.com/api/v1/post/search?query=${query}`,
+      {
+        mode: "cors",
+      }
     );
-    
+
     const { data } = await res.json();
-  
+
     setResults(data);
-  
+
     sort(query);
   };
 
@@ -53,15 +61,15 @@ const Home = () => {
       const postAPrompt = postA.prompt.toLowerCase();
       const postBPrompt = postB.prompt.toLowerCase();
       const conditionLower = condition.toLowerCase();
-  
+
       const postAContains = postAPrompt.includes(conditionLower);
       const postBContains = postBPrompt.includes(conditionLower);
-  
+
       if (postAContains && !postBContains) return -1;
       if (postBContains && !postAContains) return 1;
       return postAPrompt.localeCompare(postBPrompt);
     });
-  
+
     setAllPosts([...filteredData]);
   };
 
