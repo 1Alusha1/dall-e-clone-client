@@ -23,7 +23,7 @@ const Home = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "https://dall-e-clone-server-sekt.onrender.com/api/v1/post",
+        "https://dall-e-clone-server-oqmt.onrender.com/api/v1/post",
         {
           mode: "cors",
         }
@@ -43,7 +43,7 @@ const Home = () => {
     setQuery(query);
 
     const res = await fetch(
-      `https://dall-e-clone-server-sekt.onrender.com/api/v1/post/search?query=${query}`,
+      `https://dall-e-clone-server-oqmt.onrender.com/api/v1/post/search?query=${query}`,
       {
         mode: "cors",
       }

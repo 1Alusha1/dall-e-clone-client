@@ -52,7 +52,7 @@ const CreatePost = () => {
   const sendForm = async (dto) => {
     try {
       const res = await fetch(
-        "https://dall-e-clone-server-sekt.onrender.com/api/v1/post/save-post",
+        "https://dall-e-clone-server-oqmt.onrender.com/api/v1/post/save-post",
         {
           method: "POST",
           mode:'cors',
