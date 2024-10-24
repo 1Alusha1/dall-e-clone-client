@@ -55,6 +55,7 @@ const CreatePost = () => {
         "https://dall-e-clone-server-sekt.onrender.com/api/v1/post/save-post",
         {
           method: "POST",
+          mode:'cors',
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ dto: dto }),
         }
