@@ -33,11 +33,12 @@ const CreatePost = () => {
         });
         const data = await response.blob();
 
-        const image = URL.createObjectURL(data)
+        const imageForClient = URL.createObjectURL(data);
 
         setForm({
           ...form,
-          photo: image,
+          clientPhoto:imageForClient,
+          photo: data,
         });
       } catch (err) {
         alert(err);
@@ -51,13 +52,17 @@ const CreatePost = () => {
 
   const sendForm = async (dto) => {
     try {
+      console.log(dto);
+      const formData = new FormData();
+      formData.append("photo", dto.photo,'image.png');
+      formData.append("name", dto.name);
+      formData.append("prompt", dto.prompt);
       const res = await fetch(
-        "https://dall-e-clone-server-oqmt.onrender.com/api/v1/post/save-post",
+        "https://dall-e-clone-server-oqmt.onrender.com",
         {
           method: "POST",
           mode:'cors',
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ dto: dto }),
+          body: formData,
         }
       );
 
@@ -134,7 +139,7 @@ const CreatePost = () => {
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
             {form.photo ? (
               <img
-                src={form.photo}
+                src={form.clientPhoto}
                 alt={form.prompt}
                 className="w-full h-full object-contain"
               />

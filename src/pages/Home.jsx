@@ -29,6 +29,7 @@ const Home = () => {
         }
       );
       const { data } = await res.json();
+      console.log(data)
       setAllPosts(data);
     } catch (err) {
       if (err) console.log(err);
