@@ -58,7 +58,7 @@ const CreatePost = () => {
       formData.append("name", dto.name);
       formData.append("prompt", dto.prompt);
       const res = await fetch(
-        "https://dall-e-clone-server-oqmt.onrender.com",
+        "https://dall-e-clone-server-oqmt.onrender.com/api/v1/save-post",
         {
           method: "POST",
           mode:'cors',
